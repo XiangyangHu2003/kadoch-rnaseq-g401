@@ -1,0 +1,10 @@
+.RData
+.Rhistory
+.Rproj.user/
+
+data/raw/
+*.tar
+*.gz
+
+.DS_Store
+Thumbs.db
