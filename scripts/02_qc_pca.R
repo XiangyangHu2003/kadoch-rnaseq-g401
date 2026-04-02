@@ -44,8 +44,8 @@ ggplot(pcaData, aes(PC1, PC2, color = condition)) +
   geom_point(size = 4) +
   geom_text(aes(label = name), vjust = -1, show.legend = FALSE) +
   theme_bw() +
-  scale_x_continuous(expand = expansion(mult = 0.15)) +
-  scale_y_continuous(expand = expansion(mult = 0.15))
+  scale_x_continuous(expand = expansion(mult = 0.3)) +
+  scale_y_continuous(expand = expansion(mult = 0.3))
 
 ggsave("results/figures/pca_plot.png", width = 6, height = 5)
 write.csv(pcaData, "results/tables/pca_coordinates.csv", row.names = FALSE)
