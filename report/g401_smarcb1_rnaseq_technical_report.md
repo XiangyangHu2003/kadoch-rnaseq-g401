@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Technical Report
 
 ## Reproducible bulk RNA-seq analysis of SMARCB1/BAF47 re-expression in G401 malignant rhabdoid tumor cells
