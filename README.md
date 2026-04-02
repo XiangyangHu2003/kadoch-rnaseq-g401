@@ -16,6 +16,14 @@ This repository is intended as a compact portfolio project for computational bio
 
 ------------------------------------------------------------------------
 
+## Technical report
+
+For a more detailed summary of methods, results, interpretation, and limitations, see the full report below:
+
+[Read the full technical report](report/g401_smarcb1_rnaseq_technical_report.html)
+
+------------------------------------------------------------------------
+
 ## Biological question
 
 **What transcriptional programs change after SMARCB1/BAF47 re-expression in G401 malignant rhabdoid tumor cells?**
