@@ -41,7 +41,7 @@ pcaData <- plotPCA(vsd, intgroup = "condition", returnData = TRUE)
 percentVar <- round(100 * attr(pcaData, "percentVar"))
 
 ggplot(pcaData, aes(PC1, PC2, color = condition)) +
-  geom_point(size = 4) +
+  geom_point(size = 2) +
   geom_text(aes(label = name), vjust = -1, show.legend = FALSE) +
   theme_bw() +
   scale_x_continuous(expand = expansion(mult = 0.3)) +
