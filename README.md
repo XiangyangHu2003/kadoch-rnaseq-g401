@@ -20,7 +20,7 @@ This repository is intended as a compact portfolio project for computational bio
 
 For a more detailed summary of methods, results, interpretation, and limitations, see the full report below:
 
-[Read the full technical report](report/g401_smarcb1_rnaseq_technical_report.html)
+[Read the full technical report](report/g401_smarcb1_rnaseq_technical_report.md)
 
 ------------------------------------------------------------------------
 
