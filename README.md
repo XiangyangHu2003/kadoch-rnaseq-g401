@@ -27,7 +27,7 @@ The repository is designed as a computational biology portfolio project: the emp
 | Area | Result |
 |---|---|
 | Dataset | Four G401 Day 3 samples: two BAF47-restored and two empty-vector controls |
-| Differential expression | 17,220 genes tested; 2,314 met `padj < 0.05` and `&vert;log2FC&vert; > 1` |
+| Differential expression | 17,220 genes tested; 2,314 met `padj < 0.05` and `abs(log2FC) > 1` |
 | Direction of change | 1,654 genes had positive and 660 had negative log2 fold change |
 | Positive enrichment | EMT was strongly enriched (`NES = 2.52`, adjusted `p = 5.61 × 10⁻¹⁹`) |
 | Negative enrichment | MYC Targets V1 was strongly depleted (`NES = -2.98`, adjusted `p = 1.97 × 10⁻²⁹`) |
