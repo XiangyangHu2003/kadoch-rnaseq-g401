@@ -1,0 +1,27 @@
+# R session and project files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Package and analysis caches
+renv/library/
+renv/staging/
+cache/
+*.Rproj
+
+# Quarto / R Markdown intermediates
+*_cache/
+*_files/
+.quarto/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+~$*

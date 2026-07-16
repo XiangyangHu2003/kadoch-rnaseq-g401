@@ -31,8 +31,8 @@ The workflow included:
 -   visualization of differential expression patterns
 -   Hallmark pathway enrichment analysis using **fgsea**
 
-Overall, the analysis showed that **BAF47 re-expression was associated
-with broad transcriptional remodeling** in G401 cells. In this
+Overall, this exploratory analysis found that **BAF47 re-expression was
+associated with broad transcriptional differences** in G401 cells. In this
 first-pass analysis, **17,220 genes** were tested and **2,314 genes**
 met the significance threshold of **adjusted p-value \< 0.05** and
 **\|log2 fold change\| \> 1**. At the pathway level, genes upregulated
@@ -42,8 +42,9 @@ response**, and **apical junction**, whereas negatively enriched
 programs included **MYC targets**, **E2F targets**, **G2M checkpoint**,
 and **DNA repair**.
 
-These results are consistent with a substantial shift in transcriptional
-state following SMARCB1/BAF47 restoration.
+Within this four-sample subset, these results are consistent with a substantial
+shift in transcriptional state following SMARCB1/BAF47 restoration. They do
+not, by themselves, provide independent biological validation.
 
 ------------------------------------------------------------------------
 
@@ -65,6 +66,15 @@ in G401 malignant rhabdoid tumor cells?**
 
 ## 3. Dataset and analysis scope
 
+The source data are from the RNA-seq GEO series
+[GSE90633](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90633),
+which is part of SuperSeries
+[GSE90634](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90634).
+The experiment and data were originally reported by Nakayama et al. (2017).
+This repository begins from the sample-level processed count files distributed
+with the GEO record; FASTQ processing, alignment, and read quantification were
+not repeated here.
+
 ### 3.1 Samples analyzed
 
 This version of the analysis used four sample-level read count files:
@@ -73,6 +83,9 @@ This version of the analysis used four sample-level read count files:
 -   `G401_Empty_Day3_B.read_cnt.txt`
 -   `G401_BAF47_Day3_A.read_cnt.txt`
 -   `G401_BAF47_Day3_B.read_cnt.txt`
+
+The corresponding GEO sample accessions are GSM2495977, GSM2495978,
+GSM2495979, and GSM2495980, respectively.
 
 ### 3.2 Metadata structure
 
@@ -91,7 +104,8 @@ This report summarizes only the **G401 Day 3** comparison:
 -   one perturbation contrast: **BAF47 vs Empty**
 
 This intentionally reduced scope keeps the first version of the project
-interpretable and reproducible.
+focused and interpretable, but it limits statistical power and biological
+generalizability.
 
 ------------------------------------------------------------------------
 
@@ -159,9 +173,10 @@ PCA showed clear separation between the two experimental conditions
 along **PC1**, with the two `Empty` replicates clustering together and
 the two `BAF47` replicates clustering together. In the current output,
 the `Empty` samples had negative PC1 coordinates while the `BAF47`
-samples had positive PC1 coordinates, indicating that the primary source
-of variation in the dataset corresponded to condition rather than
-replicate identity.
+samples had positive PC1 coordinates. Condition is therefore aligned with the
+largest observed axis of variation in this four-sample subset. With only two
+samples per condition, this pattern should be interpreted descriptively rather
+than as validation of the design.
 
 ![PCA plot](../results/figures/pca_plot.png)
 
@@ -181,8 +196,9 @@ Breakdown of significant genes:
 -   **1,654 genes** were upregulated in `BAF47`
 -   **660 genes** were downregulated in `BAF47`
 
-This indicates that BAF47 re-expression was associated with widespread
-transcriptional changes rather than a small targeted response.
+Under the selected thresholds, this indicates that BAF47 re-expression was
+associated with widespread transcriptional differences in this dataset rather
+than a small set of isolated changes.
 
 ### Representative significantly changed genes
 
@@ -218,8 +234,8 @@ condition included:
 -   `TAC3`
 -   `IL23A`
 
-These results support the conclusion that BAF47 re-expression induces a
-strong shift in the transcriptional state of G401 cells.
+These results are consistent with a strong condition-associated shift in the
+transcriptional state of the analyzed G401 samples.
 
 ![MA plot](../results/figures/ma_plot.png)
 
@@ -267,9 +283,9 @@ condition.
 
 ## 6. Interpretation
 
-Taken together, the results indicate that **SMARCB1/BAF47 re-expression
-drives broad transcriptional remodeling in G401 malignant rhabdoid tumor
-cells**.
+Taken together, the results indicate that **SMARCB1/BAF47 re-expression is
+associated with broad transcriptional differences in the analyzed G401
+samples**.
 
 At the gene-expression level, the effect is strong enough to separate
 the two conditions clearly by PCA and to produce more than two thousand
@@ -288,7 +304,7 @@ acting as a major regulator of transcriptional state in this system.
 
 ## 7. Reproducibility and outputs
 
-This project was organized as a stepwise and reproducible R-based
+This project was organized as a stepwise R-based
 workflow with separate scripts for:
 
 1.  count matrix construction\
@@ -307,6 +323,10 @@ Main outputs included:
 -   `deseq2_results_sig.csv`
 -   `Hallmark_fgsea_results.csv`
 -   PCA, MA, volcano, and heatmap figures
+
+The repository records the scripts, inputs, and current outputs. Package
+versions are not yet locked, so exact reproduction across R and package
+versions is not guaranteed in this release.
 
 ------------------------------------------------------------------------
 
@@ -331,6 +351,14 @@ This first version has several important limitations:
 5.  **No external validation in this version**\
     Findings are based on internal differential expression and
     enrichment analyses only.
+
+6.  **Processed-count starting point**\
+    This reanalysis begins from GEO-provided gene counts and does not reassess
+    FASTQ quality, alignment, or quantification choices.
+
+7.  **Unlocked software environment**\
+    R and package versions are not yet captured in a lockfile or session
+    information file.
 
 These limitations do not invalidate the analysis, but they define the
 current report as a focused first-pass transcriptomic summary rather
@@ -361,8 +389,7 @@ The main findings of this first version are:
 
 -   condition-level separation by PCA
 -   thousands of significant gene-level changes
--   strong pathway-level evidence for repression of MYC/E2F/cell-cycle
-    programs
+-   negative enrichment of MYC/E2F/cell-cycle gene sets in this contrast
 -   enrichment of structural and differentiation-associated pathways
     after BAF47 re-expression
 
@@ -375,3 +402,17 @@ skills in:
 -   pathway analysis
 -   figure generation
 -   reproducible project organization
+
+------------------------------------------------------------------------
+
+## 11. Data and literature reference
+
+**Dataset:** NCBI Gene Expression Omnibus,
+[GSE90633](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE90633),
+“SMARCB1 is required for widespread BAF complex-mediated activation of
+enhancers and bivalent promoters [RNA-Seq].”
+
+**Publication:** Nakayama RT, Pulice JL, Valencia AM, et al. SMARCB1 is
+required for widespread BAF complex-mediated activation of enhancers and
+bivalent promoters. *Nature Genetics*. 2017;49(11):1613-1623.
+[doi:10.1038/ng.3958](https://doi.org/10.1038/ng.3958).
